@@ -2,7 +2,7 @@
 Object Oriented Programming
 
 object - instance of a class
-class - blueprint characterstics/data member/state | has functionality/member function/behaviour
+class - blueprint characterstics/data member/state | has functionality/member function/behaviour - actions contains verb
 
 '''
 
@@ -172,4 +172,141 @@ print(p)
 # p.age = 27
 # print(p.age)
 # print(p)
+
+
+'''
+relationship between classes / association
+
+has a
+has many
+
+aggregation - weakly associated
+ -> one class deleted the other class is not affected much
+
+composition - strongly associated
+ -> one class deleted the other class is affected a lot
+
+
+-> one to one - Student : ID
+
+class Student:
+    def __init__(self, name, dept, idCard=None):
+        self.name = name
+        self.dept = dept
+        self.idCard = idCard
+    
+    def __str__(self) -> str:
+        return self.name+" - "+self.dept+" - "+str(self.idCard)
+
+class IDCard:
+    def __init__(self, rno, is_barcode):
+        self.rno = rno
+        self.is_barcode = is_barcode
+    
+    def __str__(self) -> str:
+        return self.rno+" : "+str(self.is_barcode)
+
+s = Student("Shivu", "AI&DS")
+i = IDCard("21aib36", True)
+
+s.idCard = i
+
+print(s)
+
+#another idea:
+i = IDCard("21aib36", True)
+s = Student("Shivu", "AI&DS", i)
+
+print(s)
+
+-> one to many - Book : Page
+
+class Page:
+    def __init__(self, pNO, content):
+        self.pNo = pNO
+        self.content = content
+    
+    def __str__(self):
+        return str(self.pNo) + " - " + str(self.content)
+
+class Book:
+    def __init__(self, name, author, pages=[]):
+        self.name = name
+        self.author = author
+        self.pages = pages
+    
+    def __str__(self) -> str:
+        s = self.name + " : " + self.author + "\n"
+        for i in self.pages:
+            s += str(i)+"\n"
+        return s
+
+pages = []
+pages.append(Page(1,"Hi "))
+pages.append(Page(2,"Hello "))
+pages.append(Page(3,"Welcome "))
+pages.append(Page(4,"To "))
+pages.append(Page(5,"Karigalan's"))
+pages.append(Page(6,"MAgic"))
+pages.append(Page(7,"Show "))
+
+book = Book("Magic", "Shivu", pages)
+
+print(book)
+
+-> many to many - Teacher : Student
+
+'''
+
+class Teacher:
+    def __init__(self, name, dept):
+        self.name = name
+        self.dept = dept
+    
+    def __str__(self):
+        return self.name + " : " + self.dept
+    
+class Student:
+    def __init__(self, name, rno):
+        self.name = name
+        self.rno = rno
+    
+    def __str__(self) -> str:
+        return self.name + " : " + str(self.rno)
+
+class TeacherStudentMap:
+    def __init__(self,teacher,student ):
+        self.teacher = teacher
+        self.student = student
+    
+    def __str__(self):
+        return str(self.teacher)+" - "+str(self.student)
+
+teachers = []
+students = []
+tsList = []
+
+teachers.append(Teacher("T1", "AI"))
+teachers.append(Teacher("T2", "DS"))
+teachers.append(Teacher("T3", "Math"))
+teachers.append(Teacher("T4", "PT"))
+
+students.append(Student("S1", 121))
+students.append(Student("S2", 122))
+students.append(Student("S3", 123))
+students.append(Student("S4", 124))
+students.append(Student("S5", 125))
+
+tsList.append(TeacherStudentMap(teachers[0],students[0]))
+tsList.append(TeacherStudentMap(teachers[0],students[1]))
+tsList.append(TeacherStudentMap(teachers[1],students[0]))
+tsList.append(TeacherStudentMap(teachers[1],students[2]))
+tsList.append(TeacherStudentMap(teachers[1],students[4]))
+tsList.append(TeacherStudentMap(teachers[2],students[1]))
+tsList.append(TeacherStudentMap(teachers[2],students[4]))
+tsList.append(TeacherStudentMap(teachers[3],students[3]))
+
+for i in tsList:
+    print(i)
+
 
