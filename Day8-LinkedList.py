@@ -152,9 +152,11 @@ class LinkedList:
                     counter+=1
                 prev.next = temp.next
     
+    #delete after pos
     def delete_after_pos(self, pos):
         self.delete_at_pos(pos+1)
     
+    #search the element
     def search_ll(self, data):
         temp = self.head
         counter = 1
@@ -171,8 +173,61 @@ class LinkedList:
                     counter += 1
             if temp == None:
                 print("Element ",data," not found")
+                
+    # update via element search
+    def update_ele_ll(self, data, value):
+        temp = self.head
+        if temp == None:
+            print("Empty LinkedList")
+            return
+        else:
+            while temp != None:
+                if temp.data == data:
+                    temp.data = value
+                    break
+                else:
+                    temp = temp.next
+            if temp == None:
+                print("Out of bounds")
+                
+    #update via pos search:
+    def update_pos_ll(self, data, pos):
+        temp = self.head
+        counter = 1
+        if temp == None:
+            print("Empty Linkedlist")
+            return
+        while temp != None and counter < pos:
+            temp = temp.next
+            counter += 1
+        if temp == None:
+            print("Out of bounds")
+        else:
+            temp.data = data
 
-    
+    #rotation of the list:
+    def rotate(self, k):
+        if not self.head:
+            return str(self.head)
+        
+        length, tail = 1,self.head
+        while tail.next :
+            tail = tail.next
+            length += 1
+        
+        k = k % length
+        if k == 0:
+            return str(self.head)
+        
+        curr = self.head
+        for i in range(length-k-1):
+            curr = curr.next
+        newHead = curr.next
+        tail.next = self.head
+        self.head = newHead
+        curr.next = None
+        print(newHead.data)
+
     #printing the linked_list 
     def __str__(self):
         s = ''
@@ -220,10 +275,10 @@ ll.add_at_end(4)
 print(ll)
 ll.add_at_end(5)
 print(ll)
-ll.add_at_end(6)
-print(ll)
-ll.add_at_end(7)
-print(ll)
+# ll.add_at_end(6)
+# print(ll)
+# ll.add_at_end(7)
+# print(ll)
 
 # ll.delete_at_end()
 # print(ll)
@@ -237,8 +292,16 @@ print(ll)
 # ll.delete_at_pos(0)
 # print(ll)
 
-ll.search_ll(5)
+# ll.search_ll(5)
+# ll.search_ll(10)
 
-ll.search_ll(10)
+# ll.update_ele_ll(5, 50)
+# print(ll)
+# ll.update_ele_ll(10, 50)
+# print(ll)
 
+# ll.update_pos_ll(50, 50)
+# print(ll)
 
+ll.rotate(2)
+print(ll)

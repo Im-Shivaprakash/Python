@@ -155,7 +155,30 @@ class LinkedList:
             print("Out of bounds")
         else:
             temp.data = data
-    
+
+    #rotation of the list:
+    def rotate(self, k):
+        if not self.head:
+            return str(self.head)
+        
+        length, tail = 1,self.head
+        while tail.next :
+            tail = tail.next
+            length += 1
+        
+        k = k % length
+        if k == 0:
+            return str(self.head)
+        
+        curr = self.head
+        for i in range(length-k-1):
+            curr = curr.next
+        newHead = curr.next
+        tail.next = self.head
+        self.head = newHead
+        curr.next = None
+        print(newHead.data)
+
     #printing the linked_list 
     def __str__(self):
         s = ''
@@ -203,10 +226,10 @@ ll.add_at_end(4)
 print(ll)
 ll.add_at_end(5)
 print(ll)
-ll.add_at_end(6)
-print(ll)
-ll.add_at_end(7)
-print(ll)
+# ll.add_at_end(6)
+# print(ll)
+# ll.add_at_end(7)
+# print(ll)
 
 # ll.delete_at_end()
 # print(ll)
@@ -228,5 +251,8 @@ print(ll)
 # ll.update_ele_ll(10, 50)
 # print(ll)
 
-ll.update_pos_ll(50, 50)
+# ll.update_pos_ll(50, 50)
+# print(ll)
+
+ll.rotate(2)
 print(ll)
