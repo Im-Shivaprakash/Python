@@ -1,52 +1,3 @@
-'''
-Data Structures
-
-CRUD 
-
-Create 
-Read / Search / Retrieve
-Update
-Delete
-
-list
-stack
-queue
-tree
-graph
-hash table
-
-Storage structures
-list
-Linked list
-
-'''
-
-'''
-LINKED LIST
-
-insert :
-    append - y
-    add at beginning - y
-    add at position - y
-    adding after position - n
-    add in asc order - y
-
-delete:
-    deletion at end - y
-    delete at beginning - y
-    delete at position - y
-    delete after position - n
-
-search - n
-update(in normal ll) - n
-reverse - y
-rotate:
-    fully - y
-    particular set of range - y
-
-'''
-
-
 #creating a node:
 
 class Node:
@@ -240,5 +191,3 @@ print(ll)
 ll.search_ll(5)
 
 ll.search_ll(10)
-
-
